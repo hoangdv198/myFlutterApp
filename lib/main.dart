@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_app/screens/login.dart';
 
 void main() {
-  runApp(
-    const Center(
-      child: Text(
-        'Hello, world! 1zzzz',
-        textDirection: TextDirection.ltr,
-      ),
-    ),
-  );
+  runApp(const MaterialApp(
+    home: LoginScreen(),
+  ));
 }
