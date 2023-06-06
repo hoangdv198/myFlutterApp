@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: const Color.fromARGB(240, 244, 239, 243),
+        backgroundColor: Color.fromARGB(240, 239, 239, 239),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
