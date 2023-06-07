@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -9,113 +10,134 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white10,
-      child: SafeArea(
-        child: Column(
-          children: [
-            const Header(),
-            CategoryList(
-              categories: ['Movies', 'TV Shows', 'Anime', 'My List'],
-              onPressed: (category) {
-                print('Pressed category: $category');
-                // Do something when a category is pressed
-              },
-            ),
-            FilmPosterList(
-              filmPosters: [
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002706?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002648?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002678?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002715?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002632?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002681?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500'
-              ],
-              iconSize: 48.0,
-              heightPoster: 200,
-              viewportFraction: 0.4,
-            ),
-            const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Recent Watched',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                        decoration: TextDecoration.none),
-                  ),
-                  Text(
-                    'See all',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                        decoration: TextDecoration.none),
-                  )
-                ],
+    return Scaffold(
+      backgroundColor: Colors.white10,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Header(),
+              CategoryList(
+                categories: ['Movies', 'TV Shows', 'Anime', 'My List'],
+                onPressed: (category) {
+                  print('Pressed category: $category');
+                  // Do something when a category is pressed
+                },
               ),
-            ),
-            FilmPosterList(
-              filmPosters: [
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002706?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002648?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002678?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002715?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002632?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002681?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500'
-              ],
-              iconSize: 48.0,
-              heightPoster: 130,
-              viewportFraction: 0.23,
-            ),
-            const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'My Favorites',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                        decoration: TextDecoration.none),
-                  ),
-                  Text(
-                    'See all',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                        decoration: TextDecoration.none),
-                  )
+              FilmPosterList(
+                filmPosters: [
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002706?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002648?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002678?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002715?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002632?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002681?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500'
                 ],
+                iconSize: 48.0,
+                heightPoster: 260,
+                viewportFraction: 0.4,
               ),
-            ),
-            FilmPosterList(
-              filmPosters: [
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002706?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002648?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002678?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002715?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002632?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
-                'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002681?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500'
-              ],
-              iconSize: 48.0,
-              heightPoster: 130,
-              viewportFraction: 0.23,
-            ),
-          ],
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Recent Watched',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          decoration: TextDecoration.none),
+                    ),
+                    Text(
+                      'See all',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          decoration: TextDecoration.none),
+                    )
+                  ],
+                ),
+              ),
+              FilmPosterList(
+                filmPosters: [
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002706?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002648?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002678?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002715?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002632?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002681?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500'
+                ],
+                iconSize: 48.0,
+                heightPoster: 130,
+                viewportFraction: 0.23,
+              ),
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'My Favorites',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          decoration: TextDecoration.none),
+                    ),
+                    Text(
+                      'See all',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          decoration: TextDecoration.none),
+                    )
+                  ],
+                ),
+              ),
+              FilmPosterList(
+                filmPosters: [
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002706?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002648?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002678?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002715?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002632?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500',
+                  'https://booking.bhdstar.vn/CDN/media/entity/get/FilmPosterGraphic/HO00002681?referenceScheme=HeadOffice&allowPlaceHolder=true&height=500'
+                ],
+                iconSize: 48.0,
+                heightPoster: 130,
+                viewportFraction: 0.23,
+              ),
+            ],
+          ),
         ),
       ),
+      bottomNavigationBar: CurvedNavigationBar(
+          backgroundColor: Colors.transparent,
+          color: const Color.fromRGBO(255, 255, 255, 0.6),
+          buttonBackgroundColor: Colors.white,
+          height: 60,
+          animationDuration: const Duration(milliseconds: 300),
+          items: const [
+            Icon(Icons.home, size: 30),
+            Icon(Icons.play_arrow, size: 30),
+            Icon(Icons.search, size: 30),
+            Icon(Icons.favorite, size: 30),
+            Icon(Icons.account_circle, size: 30),
+          ],
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          }),
     );
   }
 }
