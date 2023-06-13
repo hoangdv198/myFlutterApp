@@ -1,7 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_flutter_app/routes/app_route.gr.dart';
 import 'package:my_flutter_app/screens/home.dart';
 
+@RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -58,11 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // For simplicity, let's just print the values for now:
       print('Email: $email');
       print('Password: $password');
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Home(),
-          ));
+      context.pushRoute(HomeRoute());
     }
   }
 
