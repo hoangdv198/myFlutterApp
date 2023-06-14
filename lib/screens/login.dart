@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -164,6 +166,16 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 class SocialButtonRow extends StatelessWidget {
+  Future<int> sumStream(Stream<int> stream) async {
+    print(stream);
+    var sum = 0;
+    await for (final value in stream) {
+      sum += value;
+    }
+    print(sum);
+    return sum;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -174,6 +186,7 @@ class SocialButtonRow extends StatelessWidget {
           color: Colors.red,
           onPressed: () {
             // Handle Google button pressed
+            sumStream(Stream.value(12));
           },
         ),
         const SizedBox(width: 16.0),
