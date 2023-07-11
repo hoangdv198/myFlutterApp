@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_flutter_app/assets/images/svg/logo_ig.dart';
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
-  final String assetName = 'assets/images/logo_ig.svg';
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Widget svg =
-        SvgPicture.asset(assetName, semanticsLabel: 'A red up arrow');
+        SvgPicture.string(logoIgSvgString);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
