@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_flutter_app/assets/images/svg/logo_ig.dart';
+import 'package:my_flutter_app/router/router.gr.dart';
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
@@ -33,7 +34,9 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pushRoute(const HomeRoute());
+              },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.blue,
