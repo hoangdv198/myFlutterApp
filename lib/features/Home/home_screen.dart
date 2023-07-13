@@ -5,6 +5,11 @@ import 'package:my_flutter_app/assets/images/svg/tabbar_home.dart';
 import 'package:my_flutter_app/assets/images/svg/tabbar_post.dart';
 import 'package:my_flutter_app/assets/images/svg/tabbar_reels.dart';
 import 'package:my_flutter_app/assets/images/svg/tabbar_search.dart';
+import 'package:my_flutter_app/features/TabbarScreen1/tabbar_screen1.dart';
+import 'package:my_flutter_app/features/TabbarScreen2/tabbar_screen2.dart';
+import 'package:my_flutter_app/features/TabbarScreen3/tabbar_screen3.dart';
+import 'package:my_flutter_app/features/TabbarScreen4/tabbar_screen4.dart';
+import 'package:my_flutter_app/features/TabbarScreen5/tabbar_screen5.dart';
 
 import '../../widgets/avatarCircle.dart';
 
@@ -25,11 +30,21 @@ class HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  static const List<Widget> _pages = <Widget>[
+    TabScreen1(),
+    TabScreen2(),
+    TabScreen3(),
+    TabScreen4(),
+    TabScreen5()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Home")),
-      body: const Center(child: Text("Home Screen")),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _pages,
+      ),
       bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
@@ -44,7 +59,9 @@ class HomeScreenState extends State<HomeScreen> {
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex == 1 ? iconSearchActiveTabbar : iconSearchInactiveTabbar,
+              icon: _selectedIndex == 1
+                  ? iconSearchActiveTabbar
+                  : iconSearchInactiveTabbar,
               label: '',
             ),
             BottomNavigationBarItem(
@@ -52,7 +69,9 @@ class HomeScreenState extends State<HomeScreen> {
               label: '',
             ),
             BottomNavigationBarItem(
-              icon: _selectedIndex == 3 ? iconReelsActiveTabbar : iconReelsInactiveTabbar ,
+              icon: _selectedIndex == 3
+                  ? iconReelsActiveTabbar
+                  : iconReelsInactiveTabbar,
               label: '',
             ),
             const BottomNavigationBarItem(
@@ -63,7 +82,6 @@ class HomeScreenState extends State<HomeScreen> {
               label: '',
             ),
           ]),
-      
     );
   }
 }
