@@ -9,9 +9,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:my_flutter_app/features/Home/home_screen.dart' as _i1;
-import 'package:my_flutter_app/features/Login/login_screen.dart' as _i3;
-import 'package:my_flutter_app/features/Register/register_screen.dart' as _i2;
+import 'package:my_flutter_app/view/Home/home_screen.dart' as _i1;
+import 'package:my_flutter_app/view/Login/login_screen.dart' as _i3;
+import 'package:my_flutter_app/view/Register/register_screen.dart' as _i2;
 
 abstract class $AppRouter extends _i4.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -27,7 +27,7 @@ abstract class $AppRouter extends _i4.RootStackRouter {
     RegisterRoute.name: (routeData) {
       return _i4.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.RegisterScreen(),
+        child: _i2.RegisterScreen(),
       );
     },
     LoginRoute.name: (routeData) {

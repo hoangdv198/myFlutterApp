@@ -5,11 +5,11 @@ import 'package:my_flutter_app/assets/images/svg/tabbar_home.dart';
 import 'package:my_flutter_app/assets/images/svg/tabbar_post.dart';
 import 'package:my_flutter_app/assets/images/svg/tabbar_reels.dart';
 import 'package:my_flutter_app/assets/images/svg/tabbar_search.dart';
-import 'package:my_flutter_app/features/TabbarScreen1/tabbar_screen1.dart';
-import 'package:my_flutter_app/features/TabbarScreen2/tabbar_screen2.dart';
-import 'package:my_flutter_app/features/TabbarScreen3/tabbar_screen3.dart';
-import 'package:my_flutter_app/features/TabbarScreen4/tabbar_screen4.dart';
-import 'package:my_flutter_app/features/TabbarScreen5/tabbar_screen5.dart';
+import 'package:my_flutter_app/view/TabbarScreen1/tabbar_screen1.dart';
+import 'package:my_flutter_app/view/TabbarScreen2/tabbar_screen2.dart';
+import 'package:my_flutter_app/view/TabbarScreen3/tabbar_screen3.dart';
+import 'package:my_flutter_app/view/TabbarScreen4/tabbar_screen4.dart';
+import 'package:my_flutter_app/view/TabbarScreen5/tabbar_screen5.dart';
 
 import '../../widgets/avatarCircle.dart';
 

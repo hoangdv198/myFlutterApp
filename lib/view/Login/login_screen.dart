@@ -3,6 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_flutter_app/assets/images/svg/logo_ig.dart';
 import 'package:my_flutter_app/router/router.gr.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+
+class MyChromeSafariBrowser extends ChromeSafariBrowser {
+  @override
+  void onOpened() {
+    print("----------ChromeSafari browser opened");
+  }
+
+  @override
+  void onCompletedInitialLoad() {
+    print("----------ChromeSafari browser initial load completed");
+  }
+
+  @override
+  void onClosed() {
+    print("----------ChromeSafari browser closed");
+  }
+
+  @override
+  void onLoadStop() {
+    
+  }
+}
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
@@ -10,6 +33,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final ChromeSafariBrowser browser = new MyChromeSafariBrowser();
+
     final Widget svg =
         SvgPicture.string(logoIgSvgString);
     return Scaffold(
@@ -34,8 +59,16 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             ElevatedButton(
-              onPressed: () {
-                context.pushRoute(const HomeRoute());
+              onPressed: () async {
+                context.pushRoute(const RegisterRoute());
+              // await browser.open(
+              //     url: Uri.parse("https://id.alt.ai/login/?product_code=gijiroku"),
+              //     options: ChromeSafariBrowserClassOptions(
+              //         android: AndroidChromeCustomTabsOptions(
+              //             shareState: CustomTabsShareState.SHARE_STATE_OFF,
+                          
+              //             ),
+              //         ios: IOSSafariOptions(barCollapsingEnabled: true)));
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
