@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'post_repository.dart';
-import '../core/post.dart';
+import '../../core/post.dart';
+import '../../domain/repositories/post_repository.dart';
 
 class PostRepositoryImpl implements PostRepository {
   @override

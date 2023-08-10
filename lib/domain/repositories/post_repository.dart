@@ -1,4 +1,4 @@
-import '../core/post.dart';
+import '../../core/post.dart';
 
 abstract class PostRepository {
   Future<List<Post>> fetchPosts();

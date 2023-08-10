@@ -1,8 +1,8 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_flutter_app/core/post.dart';
-import '../data/post_repository.dart';
-import '../data/post_repository_impl.dart';
+import '../domain/repositories/post_repository.dart';
+import '../data/repositories/post_repository_impl.dart';
 
 final postFutureProvider = FutureProvider.autoDispose<List<Post>>((ref) {
   // get repository from the provider below
@@ -11,7 +11,6 @@ final postFutureProvider = FutureProvider.autoDispose<List<Post>>((ref) {
   return postRepository.fetchPosts();
 });
 
-// example weather repository provider
 final postRepositoryProvider = Provider<PostRepository>((ref) {
-  return PostRepositoryImpl(); 
+  return PostRepositoryImpl();
 });
