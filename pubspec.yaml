@@ -39,6 +39,8 @@ dependencies:
   flutter_hooks: ^0.18.0
   hooks_riverpod: ^2.3.6
   flutter_svg: 
+  firebase_core: ^2.15.0
+  firebase_auth: ^4.7.2
 
 dev_dependencies:
   mocktail: ^0.3.0
