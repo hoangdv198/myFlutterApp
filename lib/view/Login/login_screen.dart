@@ -1,18 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:my_flutter_app/assets/images/svg/logo_ig.dart';
-import 'package:my_flutter_app/router/router.gr.dart';
+import 'package:my_flutter_app/provider/auth_providers.dart';
 
 @RoutePage()
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final auth = ref.read(authRepositoryProvider);
 
-    final Widget svg =
-        SvgPicture.string(logoIgSvgString);
+    final Widget svg = SvgPicture.string(logoIgSvgString);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -36,7 +37,8 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () async {
-                context.pushRoute(const HomeRoute());
+                // context.pushRoute(const HomeRoute());
+                auth.loginAnonymously();
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
