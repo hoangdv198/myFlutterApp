@@ -42,6 +42,7 @@ dependencies:
   firebase_core: ^2.15.0
   firebase_auth: ^4.7.2
   json_annotation: ^4.8.1
+  flutter_spinkit: ^5.2.0
 
 dev_dependencies:
   mocktail: ^0.3.0

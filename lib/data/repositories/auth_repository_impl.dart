@@ -1,15 +1,22 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:my_flutter_app/domain/repositories/auth_repository.dart';
 
-class AuthRepositoryImpl extends StateNotifier<User?> implements AuthRepository{
-  AuthRepositoryImpl(): super(null);
+class AuthRepositoryImpl extends StateNotifier<User?>
+    implements AuthRepository {
+  AuthRepositoryImpl() : super(null);
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<void> loginWithEmailPassword(email,password) {
-    throw UnimplementedError();
+  Future<User?> loginWithEmailPassword(email, password) async {
+    try {
+      UserCredential userCredential = await firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+      state = userCredential.user;
+    } on FirebaseAuthException {
+      rethrow;
+    }
+    return state;
   }
 
   @override
@@ -17,7 +24,7 @@ class AuthRepositoryImpl extends StateNotifier<User?> implements AuthRepository{
     try {
       UserCredential userCredential = await firebaseAuth.signInAnonymously();
       state = userCredential.user;
-    } on FirebaseAuthException { 
+    } on FirebaseAuthException {
       rethrow;
     }
     return state;
@@ -32,5 +39,4 @@ class AuthRepositoryImpl extends StateNotifier<User?> implements AuthRepository{
       rethrow;
     }
   }
-
 }
