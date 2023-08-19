@@ -20,6 +20,18 @@ class AuthRepositoryImpl extends StateNotifier<User?>
   }
 
   @override
+  Future<User?> signUpEmailPassword(String email, String password) async {
+    try {
+      UserCredential userCredential = await firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      state = userCredential.user;
+    } on FirebaseAuthException {
+      rethrow;
+    }
+    return state;
+  }
+
+  @override
   Future<User?> loginAnonymously() async {
     try {
       UserCredential userCredential = await firebaseAuth.signInAnonymously();

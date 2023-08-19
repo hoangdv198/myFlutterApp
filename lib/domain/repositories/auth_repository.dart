@@ -5,6 +5,8 @@ abstract class AuthRepository{
 
   Future<User?> loginWithEmailPassword(String email, String password);
 
+  Future<User?> signUpEmailPassword(String email, String password);
+
   Future<User?> loginAnonymously();
 
   Future<void> logout();

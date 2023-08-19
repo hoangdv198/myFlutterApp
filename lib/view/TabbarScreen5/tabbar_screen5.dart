@@ -28,7 +28,7 @@ class _TabScreen5State extends ConsumerState<TabScreen5> {
       child: Center(
         child: Column(
           children: [
-            Text("Helo user: ${user?.uid}"),
+            Text("Helo user: ${user?.email}"),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,

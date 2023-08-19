@@ -18,9 +18,9 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class LoginScreenState extends ConsumerState<LoginScreen> {
-  bool isLoading = false;
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+    bool isLoading = false;
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Widget svg = SvgPicture.string(logoIgSvgString);
+    final Widget igLogo = SvgPicture.string(logoIgSvgString);
     return LoadingOverlay(
       isLoading: isLoading,
       child: Scaffold(
@@ -39,7 +39,7 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              svg,
+              igLogo,
               const SizedBox(height: 30.0),
               TextField(
                 controller: emailController,
@@ -74,13 +74,16 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
               const SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children:[
                   Text("Don't have an account?"),
                   SizedBox(width: 5.0),
-                  Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: Colors.blue,
+                  GestureDetector(
+                    onTap: _onPressedSignUp,
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ],
@@ -90,6 +93,10 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void _onPressedSignUp() {
+    context.navigateTo(const RegisterRoute());
   }
 
   _onPressedLogin() async {
