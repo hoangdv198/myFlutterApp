@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:math';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -15,17 +13,10 @@ void main() {
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
-      FirebaseAuth.instance.authStateChanges().listen((User? user) {
-        if (user == null) {
-          print('User is currently signed out!');
-        } else {
-          print('User is signed in! $user');
-        }
-      });
       runApp(ProviderScope(child: App()));
     },
     (error, stackTrace) async {
-      print('$stackTrace: $error');
+      print('$error');
       
     },
   );
@@ -35,6 +26,8 @@ class App extends StatelessWidget {
   // make sure you don't initiate your router
   // inside of the build function.
   final _appRouter = AppRouter();
+
+  App({super.key});
 
   @override
   Widget build(BuildContext context) {

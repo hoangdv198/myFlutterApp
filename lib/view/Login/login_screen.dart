@@ -1,17 +1,19 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:my_flutter_app/assets/images/svg/logo_ig.dart';
 import 'package:my_flutter_app/provider/auth_providers.dart';
 
+import '../../router/router.gr.dart';
+
 @RoutePage()
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.read(authRepositoryProvider);
+  Widget build(BuildContext context, WidgetRef ref) {    
 
     final Widget svg = SvgPicture.string(logoIgSvgString);
     return Scaffold(
@@ -37,8 +39,10 @@ class LoginScreen extends ConsumerWidget {
             const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () async {
-                // context.pushRoute(const HomeRoute());
-                auth.loginAnonymously();
+                User? user = await ref.read(authRepositoryProvider.notifier).loginAnonymously();
+                if (user != null) {
+                  context.replaceRoute(const HomeRoute());
+                }
               },
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
@@ -47,7 +51,7 @@ class LoginScreen extends ConsumerWidget {
               child: const Text('Log In'),
             ),
             const SizedBox(height: 20.0),
-            const Text(
+            const Text( 
               'Forgot password?',
               style: TextStyle(
                 color: Colors.blue,
