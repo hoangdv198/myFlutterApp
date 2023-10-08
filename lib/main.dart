@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:my_flutter_app/routes/app_route.dart';
 import 'package:my_flutter_app/routes/app_route.gr.dart';
 import 'package:my_flutter_app/screens/login.dart';
-import 'package:my_flutter_app/screens/preview.dart';
 
 // assuing this is the root widget of your App
 class App extends StatelessWidget {

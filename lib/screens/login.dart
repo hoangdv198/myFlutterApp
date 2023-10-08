@@ -153,73 +153,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   endIndent: 40,
                 ),
                 const SizedBox(height: 24.0),
-                SocialButtonRow()
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class SocialButtonRow extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SocialButton(
-          icon: Icons.g_translate,
-          color: Colors.red,
-          onPressed: () {
-            // Handle Google button pressed
-          },
-        ),
-        const SizedBox(width: 16.0),
-        SocialButton(
-          icon: Icons.facebook,
-          color: Colors.blue,
-          onPressed: () {
-            // Handle Facebook button pressed
-          },
-        ),
-        const SizedBox(width: 16.0),
-        SocialButton(
-          icon: Icons.face,
-          color: Colors.black,
-          onPressed: () {
-            // Handle Apple button pressed
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class SocialButton extends StatelessWidget {
-  final IconData icon;
-  final Color color;
-  final VoidCallback onPressed;
-
-  const SocialButton({
-    Key? key,
-    required this.icon,
-    required this.color,
-    required this.onPressed,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: onPressed,
-      color: color,
-      shape: CircleBorder(),
-      padding: EdgeInsets.all(16.0),
-      child: Icon(
-        icon,
-        size: 24.0,
-        color: Colors.white,
       ),
     );
   }
