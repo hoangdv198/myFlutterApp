@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "734481827442",
+    "project_id": "zcam-3d94f",
+    "storage_bucket": "zcam-3d94f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734481827442:android:a3b5d8c11835bff95424eb",
+        "android_client_info": {
+          "package_name": "com.mkapp.zcam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUwXDFsY_yHBezsZr6ziXwNtx6__Hu0kA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

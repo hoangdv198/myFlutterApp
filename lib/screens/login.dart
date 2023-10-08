@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_flutter_app/routes/app_route.gr.dart';
+import 'package:my_flutter_app/core/api/rest_client.dart';
 import 'package:my_flutter_app/screens/home.dart';
+import 'package:dio/dio.dart';
+import 'package:logger/logger.dart';
 
 @RoutePage()
 class LoginScreen extends StatefulWidget {
@@ -16,6 +18,18 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
+  final dio = Dio(); // Provide a dio instance
+  final logger = Logger();
+  // dio.options.headers['Demo-Header'] = 'demo header'; // config your dio headers globally
+  late RestClient client;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    client = RestClient(dio);
+    super.initState();
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -61,7 +75,11 @@ class _LoginScreenState extends State<LoginScreen> {
       // For simplicity, let's just print the values for now:
       print('Email: $email');
       print('Password: $password');
-      context.pushRoute(HomeRoute());
+      client.login('kminchelle', '0lelplR').then((it) => logger.i(it)).catchError((obj) {
+      // non-200 error goes here.
+      logger.e(obj);
+       });
+      // context.pushRoute(HomeRoute());
     }
   }
 
