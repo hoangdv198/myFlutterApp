@@ -1,1 +1,1 @@
-const BASE_URL = 'https://dummyjson.com/';
+const BASE_URL = 'http://103.38.236.154:3000/';

@@ -13,7 +13,7 @@ class _RestClient implements RestClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://dummyjson.com/';
+    baseUrl ??= 'http://103.38.236.154:3000/api/v1/';
   }
 
   final Dio _dio;
@@ -21,23 +21,21 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<UserModel> login(
-    String username,
-    String password,
-  ) async {
+  Future<AuthResponse> login(AuthBody body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<UserModel>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<AuthResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'auth/login',
+              '/auth/login',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -46,7 +44,37 @@ class _RestClient implements RestClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = UserModel.fromJson(_result.data!);
+    final value = AuthResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<GetStreamsViewableResponse> getStreamsViewable(
+    int page,
+    int limit,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GetStreamsViewableResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/streams/viewable?page=${page}&limit=${limit}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = GetStreamsViewableResponse.fromJson(_result.data!);
     return value;
   }
 
