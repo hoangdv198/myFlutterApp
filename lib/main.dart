@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_flutter_app/routes/app_route.dart';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
-
+import 'package:media_kit/media_kit.dart';                      // Provides [Player], [Media], [Playlist] etc.
+import 'package:media_kit_video/media_kit_video.dart';  
 final dio = Dio(); // Provide a dio instance
 final logger = Logger();
 
@@ -20,5 +21,7 @@ class App extends StatelessWidget {
 }
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MediaKit.ensureInitialized();
   runApp(App());
 }
