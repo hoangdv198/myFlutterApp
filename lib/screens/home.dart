@@ -63,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         isLoading = true;
       });
-      final response = await client.getStreamsViewable(1, 30);
+      final response = await client.getStreamsViewable(0, 10000);
       setState(() {
         listStreams = response.data;
         isLoading = false;

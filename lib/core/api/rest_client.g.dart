@@ -65,7 +65,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              '/streams/viewable?page=${page}&limit=${limit}',
+              '/streams/viewable?page=${page}',
               queryParameters: queryParameters,
               data: _data,
             )

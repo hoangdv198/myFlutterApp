@@ -6,7 +6,7 @@ import 'package:my_flutter_app/main.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 class MyVideoPlayer extends StatefulWidget {
-  const MyVideoPlayer({super.key,required this.stream});
+  const MyVideoPlayer({super.key, required this.stream});
   final StreamModel stream;
   @override
   State<MyVideoPlayer> createState() => _MyVideoPlayerState();
@@ -33,14 +33,13 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
   late final controller = VideoController(player);
   bool isWB = false;
   bool isFlash = false;
+  bool vibShort = false;
+  bool vibLong = false;
 
   @override
   void initState() {
     super.initState();
-    player
-        .open(Media(
-            'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'))
-        .then((value) {
+    player.open(Media(widget.stream.flvUrl)).then((value) {
       logger.i('DONE');
     }).onError((error, stackTrace) {
       logger.e(error);
@@ -117,9 +116,9 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
                       child: Row(
                         children: [
                           ButtonFeature(
-                            child: const Icon(
+                            child: Icon(
                               Icons.flash_on_outlined,
-                              color: Colors.white,
+                              color: isFlash ? Colors.white : Colors.black,
                             ),
                             onTap: () {
                               onFlash();
@@ -127,9 +126,9 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
                           ),
                           const SizedBox(width: 10),
                           ButtonFeature(
-                            child: const Icon(
+                            child: Icon(
                               Icons.edgesensor_low_outlined,
-                              color: Colors.white,
+                              color: vibShort ? Colors.white : Colors.black,
                             ),
                             onTap: () {
                               onLowVibration();
@@ -137,9 +136,9 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
                           ),
                           const SizedBox(width: 10),
                           ButtonFeature(
-                            child: const Icon(
+                            child: Icon(
                               Icons.edgesensor_high_outlined,
-                              color: Colors.white,
+                              color: vibLong ? Colors.white : Colors.black,
                             ),
                             onTap: () {
                               onHighVibration();
@@ -147,9 +146,9 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
                           ),
                           const SizedBox(width: 10),
                           ButtonFeature(
-                            child: const Icon(
+                            child: Icon(
                               Icons.filter_b_and_w,
-                              color: Colors.white,
+                              color: isWB ? Colors.white : Colors.black,
                             ),
                             onTap: () {
                               onWB();
@@ -168,7 +167,11 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
   //
   Future<void> onFlash() async {
     try {
-      await firestoreServices.setFlash(widget.stream.id,!isFlash );
+      await firestoreServices.updateOptions(
+          streamId: widget.stream.id,
+          isFlash: !isFlash,
+          vibrateLong: vibLong,
+          vibrateShort: vibShort);
       setState(() {
         isFlash = !isFlash;
       });
@@ -179,7 +182,14 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
 
   Future<void> onLowVibration() async {
     try {
-      await firestoreServices.setVibrateShort(widget.stream.id,true );
+      await firestoreServices.updateOptions(
+          streamId: widget.stream.id,
+          vibrateShort: !vibShort,
+          isFlash: isFlash,
+          vibrateLong: vibLong);
+      setState(() {
+        vibShort = !vibShort;
+      });
     } catch (e) {
       logger.i(e);
     }
@@ -187,7 +197,14 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
 
   Future<void> onHighVibration() async {
     try {
-      await firestoreServices.setVibrateLong(widget.stream.id,true );
+      await firestoreServices.updateOptions(
+          streamId: widget.stream.id,
+          vibrateLong: !vibLong,
+          vibrateShort: vibShort,
+          isFlash: isFlash);
+      setState(() {
+        vibLong = !vibLong;
+      });
     } catch (e) {
       logger.i(e);
     }

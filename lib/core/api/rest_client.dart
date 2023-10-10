@@ -13,7 +13,7 @@ abstract class RestClient {
   @POST('/auth/login')
   Future<AuthResponse> login(@Body() AuthBody body);
 
-  @GET('/streams/viewable?page={page}&limit={limit}')
+  @GET('/streams/viewable?page={page}')
   Future<GetStreamsViewableResponse> getStreamsViewable(@Path('page') int page, @Path('limit') int limit);
 
 }
