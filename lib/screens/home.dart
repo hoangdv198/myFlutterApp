@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/component/load/loadingOverlay.dart';
 import 'package:my_flutter_app/core/api/models/stream/stream.dart';
+import 'package:my_flutter_app/gen/assets.gen.dart';
 import 'package:my_flutter_app/main.dart';
 import 'package:my_flutter_app/routes/app_route.gr.dart';
 import 'package:my_flutter_app/screens/widgets/videoplayer.dart';
@@ -43,11 +44,15 @@ class _HomeScreenState extends State<HomeScreen> {
               itemCount: listStreams.length,
               itemBuilder: (BuildContext context, int index) {
                 final item = listStreams[index];
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(8),color: Colors.white),
                   child: ListTile(
                     title: Text(item.name),
-                    tileColor: Colors.white,
+                    subtitle: Text(item.status),
+                    leading: Assets.images.liveStreaming
+                        .image(height: 30, color: Colors.red),
                     onTap: () {
                       context.router.navigate(VideoDetailRoute(stream: item));
                     },
