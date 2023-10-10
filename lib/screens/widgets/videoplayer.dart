@@ -86,11 +86,9 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
             body: Stack(children: [
               Stack(
                 children: [
-                  Center(
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.width * 9.0 / 16.0,
-                      // Use [Video] widget to display video output.
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Center(
                       child: ColorFiltered(
                         colorFilter: ColorFilter.mode(
                           isWB ? Colors.grey : Colors.transparent,
@@ -111,8 +109,8 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
                   // ),
                   if (isVideoInitial)
                     Positioned(
-                      bottom: 10,
-                      left: 20,
+                      bottom: 30,
+                      right: 20,
                       child: Row(
                         children: [
                           ButtonFeature(
@@ -168,7 +166,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
   Future<void> onFlash() async {
     try {
       await firestoreServices.updateOptions(
-          streamId: widget.stream.id,
+          streamId: widget.stream.createdBy.id,
           isFlash: !isFlash,
           vibrateLong: vibLong,
           vibrateShort: vibShort);
@@ -183,7 +181,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
   Future<void> onLowVibration() async {
     try {
       await firestoreServices.updateOptions(
-          streamId: widget.stream.id,
+          streamId: widget.stream.createdBy.id,
           vibrateShort: !vibShort,
           isFlash: isFlash,
           vibrateLong: vibLong);
@@ -198,7 +196,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
   Future<void> onHighVibration() async {
     try {
       await firestoreServices.updateOptions(
-          streamId: widget.stream.id,
+          streamId: widget.stream.createdBy.id,
           vibrateLong: !vibLong,
           vibrateShort: vibShort,
           isFlash: isFlash);

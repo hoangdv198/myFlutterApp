@@ -1,6 +1,7 @@
 
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:my_flutter_app/core/api/models/auth/user.dart';
 import 'package:my_flutter_app/core/api/models/stream/cluster.dart';
 import 'package:my_flutter_app/core/api/models/stream/stream_viewer.dart';
 
@@ -18,10 +19,11 @@ class StreamModel with _$StreamModel {
     required String status,
     required DateTime createdAt,
     required DateTime updatedAt,
+    required User createdBy ,
     DateTime? deletedAt,
-    required Cluster cluster,
+    Cluster? cluster,
     required List<StreamViewer> streamViewers,
-    @JsonKey(name: '__entity')
+    @JsonKey(name: '__entity',includeIfNull: false)
     required String entity,
     required String hlsUrl,
     required String flvUrl,

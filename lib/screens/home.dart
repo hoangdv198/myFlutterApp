@@ -64,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
         isLoading = true;
       });
       final response = await client.getStreamsViewable(0, 10000);
+      logger.d(response);
       setState(() {
         listStreams = response.data;
         isLoading = false;

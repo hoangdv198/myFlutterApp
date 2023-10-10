@@ -26,10 +26,11 @@ mixin _$StreamModel {
   String get status => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
+  User get createdBy => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
-  Cluster get cluster => throw _privateConstructorUsedError;
+  Cluster? get cluster => throw _privateConstructorUsedError;
   List<StreamViewer> get streamViewers => throw _privateConstructorUsedError;
-  @JsonKey(name: '__entity')
+  @JsonKey(name: '__entity', includeIfNull: false)
   String get entity => throw _privateConstructorUsedError;
   String get hlsUrl => throw _privateConstructorUsedError;
   String get flvUrl => throw _privateConstructorUsedError;
@@ -53,14 +54,16 @@ abstract class $StreamModelCopyWith<$Res> {
       String status,
       DateTime createdAt,
       DateTime updatedAt,
+      User createdBy,
       DateTime? deletedAt,
-      Cluster cluster,
+      Cluster? cluster,
       List<StreamViewer> streamViewers,
-      @JsonKey(name: '__entity') String entity,
+      @JsonKey(name: '__entity', includeIfNull: false) String entity,
       String hlsUrl,
       String flvUrl});
 
-  $ClusterCopyWith<$Res> get cluster;
+  $UserCopyWith<$Res> get createdBy;
+  $ClusterCopyWith<$Res>? get cluster;
 }
 
 /// @nodoc
@@ -82,8 +85,9 @@ class _$StreamModelCopyWithImpl<$Res, $Val extends StreamModel>
     Object? status = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? createdBy = null,
     Object? deletedAt = freezed,
-    Object? cluster = null,
+    Object? cluster = freezed,
     Object? streamViewers = null,
     Object? entity = null,
     Object? hlsUrl = null,
@@ -114,14 +118,18 @@ class _$StreamModelCopyWithImpl<$Res, $Val extends StreamModel>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as User,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      cluster: null == cluster
+      cluster: freezed == cluster
           ? _value.cluster
           : cluster // ignore: cast_nullable_to_non_nullable
-              as Cluster,
+              as Cluster?,
       streamViewers: null == streamViewers
           ? _value.streamViewers
           : streamViewers // ignore: cast_nullable_to_non_nullable
@@ -143,8 +151,20 @@ class _$StreamModelCopyWithImpl<$Res, $Val extends StreamModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ClusterCopyWith<$Res> get cluster {
-    return $ClusterCopyWith<$Res>(_value.cluster, (value) {
+  $UserCopyWith<$Res> get createdBy {
+    return $UserCopyWith<$Res>(_value.createdBy, (value) {
+      return _then(_value.copyWith(createdBy: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ClusterCopyWith<$Res>? get cluster {
+    if (_value.cluster == null) {
+      return null;
+    }
+
+    return $ClusterCopyWith<$Res>(_value.cluster!, (value) {
       return _then(_value.copyWith(cluster: value) as $Val);
     });
   }
@@ -165,15 +185,18 @@ abstract class _$$_StreamModelCopyWith<$Res>
       String status,
       DateTime createdAt,
       DateTime updatedAt,
+      User createdBy,
       DateTime? deletedAt,
-      Cluster cluster,
+      Cluster? cluster,
       List<StreamViewer> streamViewers,
-      @JsonKey(name: '__entity') String entity,
+      @JsonKey(name: '__entity', includeIfNull: false) String entity,
       String hlsUrl,
       String flvUrl});
 
   @override
-  $ClusterCopyWith<$Res> get cluster;
+  $UserCopyWith<$Res> get createdBy;
+  @override
+  $ClusterCopyWith<$Res>? get cluster;
 }
 
 /// @nodoc
@@ -193,8 +216,9 @@ class __$$_StreamModelCopyWithImpl<$Res>
     Object? status = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? createdBy = null,
     Object? deletedAt = freezed,
-    Object? cluster = null,
+    Object? cluster = freezed,
     Object? streamViewers = null,
     Object? entity = null,
     Object? hlsUrl = null,
@@ -225,14 +249,18 @@ class __$$_StreamModelCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      createdBy: null == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as User,
       deletedAt: freezed == deletedAt
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      cluster: null == cluster
+      cluster: freezed == cluster
           ? _value.cluster
           : cluster // ignore: cast_nullable_to_non_nullable
-              as Cluster,
+              as Cluster?,
       streamViewers: null == streamViewers
           ? _value._streamViewers
           : streamViewers // ignore: cast_nullable_to_non_nullable
@@ -263,10 +291,11 @@ class _$_StreamModel extends _StreamModel {
       required this.status,
       required this.createdAt,
       required this.updatedAt,
+      required this.createdBy,
       this.deletedAt,
-      required this.cluster,
+      this.cluster,
       required final List<StreamViewer> streamViewers,
-      @JsonKey(name: '__entity') required this.entity,
+      @JsonKey(name: '__entity', includeIfNull: false) required this.entity,
       required this.hlsUrl,
       required this.flvUrl})
       : _streamViewers = streamViewers,
@@ -288,9 +317,11 @@ class _$_StreamModel extends _StreamModel {
   @override
   final DateTime updatedAt;
   @override
+  final User createdBy;
+  @override
   final DateTime? deletedAt;
   @override
-  final Cluster cluster;
+  final Cluster? cluster;
   final List<StreamViewer> _streamViewers;
   @override
   List<StreamViewer> get streamViewers {
@@ -300,7 +331,7 @@ class _$_StreamModel extends _StreamModel {
   }
 
   @override
-  @JsonKey(name: '__entity')
+  @JsonKey(name: '__entity', includeIfNull: false)
   final String entity;
   @override
   final String hlsUrl;
@@ -309,7 +340,7 @@ class _$_StreamModel extends _StreamModel {
 
   @override
   String toString() {
-    return 'StreamModel(id: $id, name: $name, address: $address, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, cluster: $cluster, streamViewers: $streamViewers, entity: $entity, hlsUrl: $hlsUrl, flvUrl: $flvUrl)';
+    return 'StreamModel(id: $id, name: $name, address: $address, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, createdBy: $createdBy, deletedAt: $deletedAt, cluster: $cluster, streamViewers: $streamViewers, entity: $entity, hlsUrl: $hlsUrl, flvUrl: $flvUrl)';
   }
 
   @override
@@ -325,6 +356,8 @@ class _$_StreamModel extends _StreamModel {
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
+            (identical(other.createdBy, createdBy) ||
+                other.createdBy == createdBy) &&
             (identical(other.deletedAt, deletedAt) ||
                 other.deletedAt == deletedAt) &&
             (identical(other.cluster, cluster) || other.cluster == cluster) &&
@@ -345,6 +378,7 @@ class _$_StreamModel extends _StreamModel {
       status,
       createdAt,
       updatedAt,
+      createdBy,
       deletedAt,
       cluster,
       const DeepCollectionEquality().hash(_streamViewers),
@@ -374,10 +408,12 @@ abstract class _StreamModel extends StreamModel {
       required final String status,
       required final DateTime createdAt,
       required final DateTime updatedAt,
+      required final User createdBy,
       final DateTime? deletedAt,
-      required final Cluster cluster,
+      final Cluster? cluster,
       required final List<StreamViewer> streamViewers,
-      @JsonKey(name: '__entity') required final String entity,
+      @JsonKey(name: '__entity', includeIfNull: false)
+          required final String entity,
       required final String hlsUrl,
       required final String flvUrl}) = _$_StreamModel;
   _StreamModel._() : super._();
@@ -398,13 +434,15 @@ abstract class _StreamModel extends StreamModel {
   @override
   DateTime get updatedAt;
   @override
+  User get createdBy;
+  @override
   DateTime? get deletedAt;
   @override
-  Cluster get cluster;
+  Cluster? get cluster;
   @override
   List<StreamViewer> get streamViewers;
   @override
-  @JsonKey(name: '__entity')
+  @JsonKey(name: '__entity', includeIfNull: false)
   String get entity;
   @override
   String get hlsUrl;

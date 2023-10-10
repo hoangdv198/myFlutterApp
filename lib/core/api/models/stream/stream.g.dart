@@ -14,10 +14,13 @@ _$_StreamModel _$$_StreamModelFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdBy: User.fromJson(json['createdBy'] as Map<String, dynamic>),
       deletedAt: json['deletedAt'] == null
           ? null
           : DateTime.parse(json['deletedAt'] as String),
-      cluster: Cluster.fromJson(json['cluster'] as Map<String, dynamic>),
+      cluster: json['cluster'] == null
+          ? null
+          : Cluster.fromJson(json['cluster'] as Map<String, dynamic>),
       streamViewers: (json['streamViewers'] as List<dynamic>)
           .map((e) => StreamViewer.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -34,6 +37,7 @@ Map<String, dynamic> _$$_StreamModelToJson(_$_StreamModel instance) =>
       'status': instance.status,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
+      'createdBy': instance.createdBy,
       'deletedAt': instance.deletedAt?.toIso8601String(),
       'cluster': instance.cluster,
       'streamViewers': instance.streamViewers,

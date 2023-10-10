@@ -108,22 +108,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Hello again!",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: Text(
-                      "Welcome back you've been missed!",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
                   CupertinoTextField(
                     controller: _emailController,
                     placeholder: "Enter email",

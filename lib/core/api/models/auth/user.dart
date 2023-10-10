@@ -19,6 +19,8 @@ class User with _$User {
     required DateTime createdAt,
     required DateTime updatedAt,
     DateTime? deletedAt,
+    @JsonKey(name:'__entity',includeIfNull: false)
+    String? entity
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

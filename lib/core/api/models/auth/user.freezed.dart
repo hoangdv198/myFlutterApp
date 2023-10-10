@@ -30,6 +30,8 @@ mixin _$User {
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
   DateTime? get deletedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: '__entity', includeIfNull: false)
+  String? get entity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +53,8 @@ abstract class $UserCopyWith<$Res> {
       String status,
       DateTime createdAt,
       DateTime updatedAt,
-      DateTime? deletedAt});
+      DateTime? deletedAt,
+      @JsonKey(name: '__entity', includeIfNull: false) String? entity});
 }
 
 /// @nodoc
@@ -77,6 +80,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? deletedAt = freezed,
+    Object? entity = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -119,6 +123,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      entity: freezed == entity
+          ? _value.entity
+          : entity // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -139,7 +147,8 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String status,
       DateTime createdAt,
       DateTime updatedAt,
-      DateTime? deletedAt});
+      DateTime? deletedAt,
+      @JsonKey(name: '__entity', includeIfNull: false) String? entity});
 }
 
 /// @nodoc
@@ -161,6 +170,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? deletedAt = freezed,
+    Object? entity = freezed,
   }) {
     return _then(_$_User(
       id: null == id
@@ -203,6 +213,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
           ? _value.deletedAt
           : deletedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      entity: freezed == entity
+          ? _value.entity
+          : entity // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -220,7 +234,8 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       required this.status,
       required this.createdAt,
       required this.updatedAt,
-      this.deletedAt})
+      this.deletedAt,
+      @JsonKey(name: '__entity', includeIfNull: false) this.entity})
       : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -245,10 +260,13 @@ class _$_User extends _User with DiagnosticableTreeMixin {
   final DateTime updatedAt;
   @override
   final DateTime? deletedAt;
+  @override
+  @JsonKey(name: '__entity', includeIfNull: false)
+  final String? entity;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, email: $email, firstName: $firstName, lastName: $lastName, canStream: $canStream, role: $role, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt)';
+    return 'User(id: $id, email: $email, firstName: $firstName, lastName: $lastName, canStream: $canStream, role: $role, status: $status, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, entity: $entity)';
   }
 
   @override
@@ -265,7 +283,8 @@ class _$_User extends _User with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('updatedAt', updatedAt))
-      ..add(DiagnosticsProperty('deletedAt', deletedAt));
+      ..add(DiagnosticsProperty('deletedAt', deletedAt))
+      ..add(DiagnosticsProperty('entity', entity));
   }
 
   @override
@@ -288,13 +307,14 @@ class _$_User extends _User with DiagnosticableTreeMixin {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.deletedAt, deletedAt) ||
-                other.deletedAt == deletedAt));
+                other.deletedAt == deletedAt) &&
+            (identical(other.entity, entity) || other.entity == entity));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, email, firstName, lastName,
-      canStream, role, status, createdAt, updatedAt, deletedAt);
+      canStream, role, status, createdAt, updatedAt, deletedAt, entity);
 
   @JsonKey(ignore: true)
   @override
@@ -321,7 +341,9 @@ abstract class _User extends User {
       required final String status,
       required final DateTime createdAt,
       required final DateTime updatedAt,
-      final DateTime? deletedAt}) = _$_User;
+      final DateTime? deletedAt,
+      @JsonKey(name: '__entity', includeIfNull: false)
+          final String? entity}) = _$_User;
   _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -346,6 +368,9 @@ abstract class _User extends User {
   DateTime get updatedAt;
   @override
   DateTime? get deletedAt;
+  @override
+  @JsonKey(name: '__entity', includeIfNull: false)
+  String? get entity;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
