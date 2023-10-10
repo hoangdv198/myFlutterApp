@@ -7,7 +7,7 @@ class FirestoreServices {
 
   Future<void> setFlash(String streamId,bool value) async {
     try {
-      await db.collection("streams").doc(streamId).set({
+      await db.collection("streams").doc(streamId).update({
         "isFlash": value
       });
     } catch (e) {
@@ -17,7 +17,7 @@ class FirestoreServices {
 
   Future<void> setVibrateShort(String streamId,bool value) async {
     try {
-      await db.collection("streams").doc(streamId).set({
+      await db.collection("streams").doc(streamId).update({
         "vibrateShort": value
       });
     } catch (e) {
@@ -27,7 +27,7 @@ class FirestoreServices {
 
   Future<void> setVibrateLong(String streamId,bool value) async {
     try {
-      await db.collection("streams").doc(streamId).set({
+      await db.collection("streams").doc(streamId).update({
         "vibrateLong": value
       });
     } catch (e) {

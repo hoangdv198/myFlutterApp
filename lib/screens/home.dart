@@ -40,15 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
           isLoading: isLoading,
           child: ListView.builder(
               padding: const EdgeInsets.all(8),
-              itemCount: 3,
+              itemCount: listStreams.length,
               itemBuilder: (BuildContext context, int index) {
+                final item = listStreams[index];
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: ListTile(
-                    title: Text('helo'),
+                    title: Text(item.name),
                     tileColor: Colors.white,
                     onTap: () {
-                      context.router.navigate(VideoDetailRoute());
+                      context.router.navigate(VideoDetailRoute(stream: item));
                     },
                   ),
                 );

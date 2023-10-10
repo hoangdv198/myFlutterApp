@@ -1,22 +1,18 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:my_flutter_app/core/api/models/stream/stream.dart';
 import 'package:my_flutter_app/screens/widgets/videoplayer.dart';
 
 @RoutePage()
-class VideoDetailScreen extends StatefulWidget {
-  
-  const VideoDetailScreen({super.key});
+class VideoDetailScreen extends StatelessWidget {
+  final StreamModel stream;
+  const VideoDetailScreen({super.key,required this.stream});
 
-  @override
-  State<VideoDetailScreen> createState() => _VideoDetailScreenState();
-}
-
-class _VideoDetailScreenState extends State<VideoDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(title: Text('Watch Live'),backgroundColor: Colors.orange,),
-      body: MyVideoPlayer(),
+      appBar: AppBar(title: Text(stream.name),backgroundColor: Colors.orange,),
+      body: MyVideoPlayer(stream: stream,),
     );
   }
 }

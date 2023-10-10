@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:media_kit_video/media_kit_video_controls/src/controls/methods/video_state.dart';
+import 'package:my_flutter_app/core/api/models/stream/stream.dart';
 import 'package:my_flutter_app/main.dart';
 import 'package:media_kit_video/media_kit_video.dart';
 
 class MyVideoPlayer extends StatefulWidget {
-  const MyVideoPlayer({super.key});
-
+  const MyVideoPlayer({super.key,required this.stream});
+  final StreamModel stream;
   @override
   State<MyVideoPlayer> createState() => _MyVideoPlayerState();
 }
@@ -31,6 +32,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
   // Create a [VideoController] to handle video output from [Player].
   late final controller = VideoController(player);
   bool isWB = false;
+  bool isFlash = false;
 
   @override
   void initState() {
@@ -166,7 +168,10 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
   //
   Future<void> onFlash() async {
     try {
-      await firestoreServices.setFlash('1234',false );
+      await firestoreServices.setFlash(widget.stream.id,!isFlash );
+      setState(() {
+        isFlash = !isFlash;
+      });
     } catch (e) {
       logger.i(e);
     }
@@ -174,7 +179,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
 
   Future<void> onLowVibration() async {
     try {
-      await firestoreServices.setVibrateShort('1234',true );
+      await firestoreServices.setVibrateShort(widget.stream.id,true );
     } catch (e) {
       logger.i(e);
     }
@@ -182,7 +187,7 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
 
   Future<void> onHighVibration() async {
     try {
-      await firestoreServices.setVibrateLong('1234',true );
+      await firestoreServices.setVibrateLong(widget.stream.id,true );
     } catch (e) {
       logger.i(e);
     }
