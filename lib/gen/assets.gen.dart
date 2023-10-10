@@ -12,12 +12,16 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/icon_launcher.png
+  AssetGenImage get iconLauncher =>
+      const AssetGenImage('assets/images/icon_launcher.png');
+
   /// File path: assets/images/live-streaming.png
   AssetGenImage get liveStreaming =>
       const AssetGenImage('assets/images/live-streaming.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [liveStreaming];
+  List<AssetGenImage> get values => [iconLauncher, liveStreaming];
 }
 
 class Assets {
