@@ -50,6 +50,7 @@ dependencies:
   media_kit: 
   media_kit_video: 
   media_kit_libs_video: 
+  cloud_firestore: ^4.9.3
 
 dev_dependencies:
   flutter_test:

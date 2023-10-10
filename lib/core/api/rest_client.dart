@@ -15,5 +15,6 @@ abstract class RestClient {
 
   @GET('/streams/viewable?page={page}&limit={limit}')
   Future<GetStreamsViewableResponse> getStreamsViewable(@Path('page') int page, @Path('limit') int limit);
+
 }
 

@@ -67,12 +67,12 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
             bottomButtonBar: [
               MaterialPositionIndicator(),
               Spacer(),
-              MaterialCustomButton(
-                onPressed: () {
-                  if (isFullscreen(context)) {
-                  } else {}
-                },
-              )
+              // MaterialCustomButton(
+              //   onPressed: () {
+              //     if (isFullscreen(context)) {
+              //     } else {}
+              //   },
+              // )
             ]),
         fullscreen: const MaterialVideoControlsThemeData(
           // Modify theme options:
@@ -166,21 +166,23 @@ class _MyVideoPlayerState extends State<MyVideoPlayer> {
   //
   Future<void> onFlash() async {
     try {
-   
+      await firestoreServices.setFlash('1234',false );
     } catch (e) {
       logger.i(e);
     }
   }
 
   Future<void> onLowVibration() async {
-    try {} catch (e) {
+    try {
+      await firestoreServices.setVibrateShort('1234',true );
+    } catch (e) {
       logger.i(e);
     }
   }
 
   Future<void> onHighVibration() async {
     try {
-
+      await firestoreServices.setVibrateLong('1234',true );
     } catch (e) {
       logger.i(e);
     }
